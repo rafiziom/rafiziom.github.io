@@ -2,55 +2,94 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Twoje Imię - CV</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafał Ziomek - CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="cv-container">
-        <!-- Lewa kolumna - zdjęcie i kontakt -->
+        <!-- Lewa kolumna -->
         <div class="sidebar">
-            <img src="assets/images/photo.jpg" alt="Twoje zdjęcie">
+            <img src="assets/images/profile.jpg" alt="Rafał Ziomek" class="profile-img">
+            
             <div class="contact-box">
                 <h2>Kontakt</h2>
-                <p><i class="icon">📧</i> twój@email.com</p>
-                <p><i class="icon">📱</i> +48 123 456 789</p>
-                <!-- ... inne dane kontaktowe z Canva ... -->
+                <p><i class="fas fa-envelope"></i> rafal.ziomek@example.com</p>
+                <p><i class="fas fa-phone"></i> +48 123 456 789</p>
+                <p><i class="fas fa-map-marker-alt"></i> Warszawa, Polska</p>
+                <p><i class="fab fa-linkedin"></i> linkedin.com/in/rafalziomek</p>
+                <p><i class="fab fa-github"></i> github.com/rafiziom</p>
+            </div>
+
+            <div class="skills-box">
+                <h2>Umiejętności</h2>
+                <ul>
+                    <li>Python (zaawansowany)</li>
+                    <li>HTML/CSS (średnio-zaawansowany)</li>
+                    <li>JavaScript (podstawowy)</li>
+                    <li>Git (średnio-zaawansowany)</li>
+                    <li>SQL (średnio-zaawansowany)</li>
+                </ul>
+            </div>
+
+            <div class="languages-box">
+                <h2>Języki</h2>
+                <ul>
+                    <li>Angielski - C1</li>
+                    <li>Polski - ojczysty</li>
+                </ul>
             </div>
         </div>
 
-        <!-- Główna zawartość -->
+        <!-- Prawa kolumna -->
         <div class="main-content">
             <header>
-                <h1>Twoje Imię</h1>
-                <p class="profession">Twój zawód</p>
+                <h1>Rafał Ziomek</h1>
+                <p class="profession">Inżynier Systemów IT</p>
             </header>
 
-            <!-- Sekcja Doświadczenie -->
             <section class="section">
-                <h2><span>💼</span> Doświadczenie</h2>
-                <div class="timeline">
-                    <!-- Dane z Canva -->
-                    <div class="timeline-item">
-                        <h3>Nazwa stanowiska</h3>
-                        <p class="date">2020 - obecnie</p>
-                        <ul>
-                            <li>Opis obowiązków 1</li>
-                            <li>Opis obowiązków 2</li>
-                        </ul>
-                    </div>
+                <h2><i class="fas fa-briefcase"></i> Doświadczenie</h2>
+                
+                <div class="timeline-item">
+                    <h3>Specjalista IT</h3>
+                    <p class="company">ABC Tech Sp. z o.o. | 2020 - obecnie</p>
+                    <ul>
+                        <li>Wdrażanie i konfiguracja systemów IT</li>
+                        <li>Automatyzacja procesów przy użyciu Python</li>
+                        <li>Wsparcie techniczne dla użytkowników</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Stażysta IT</h3>
+                    <p class="company">XYZ Corporation | 2018 - 2020</p>
+                    <ul>
+                        <li>Pomoc w administracji systemami</li>
+                        <li>Rozwiązywanie problemów technicznych</li>
+                    </ul>
                 </div>
             </section>
 
-            <!-- Sekcja Umiejętności -->
             <section class="section">
-                <h2><span>🛠️</span> Umiejętności</h2>
-                <div class="skills">
-                    <div class="skill">
-                        <span>Python</span>
-                        <div class="progress-bar" style="width: 90%"></div>
-                    </div>
-                    <!-- ... inne umiejętności ... -->
+                <h2><i class="fas fa-graduation-cap"></i> Wykształcenie</h2>
+                <div class="timeline-item">
+                    <h3>Politechnika Warszawska</h3>
+                    <p class="degree">Informatyka, specjalizacja: Systemy IT</p>
+                    <p class="date">2015 - 2019</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-project-diagram"></i> Projekty</h2>
+                <div class="project">
+                    <h3>System zarządzania zadaniami</h3>
+                    <p>Aplikacja webowa napisana w Python/Django</p>
+                    <a href="https://github.com/rafiziom/task-manager" class="project-link">
+                        <i class="fab fa-github"></i> Zobacz na GitHub
+                    </a>
                 </div>
             </section>
         </div>
