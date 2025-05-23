@@ -1,27 +1,49 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Animacja ładowania
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateX(-20px)';
-        item.style.transition = `all 0.5s ease ${index * 0.1}s`;
-        
-        setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateX(0)';
-        }, 100);
+// Nowe animacje
+function animateElements() {
+    // Animacja nagłówka
+    gsap.from("header", { 
+      duration: 1, 
+      y: -50, 
+      opacity: 0,
+      ease: "power3.out"
     });
-
-    // Efekt hover na projekty
-    const projects = document.querySelectorAll('.project');
-    projects.forEach(project => {
-        project.addEventListener('mouseenter', () => {
-            project.style.transform = 'scale(1.02)';
-            project.style.boxShadow = '0 5px 15px rgba(52, 152, 219, 0.2)';
-        });
-        project.addEventListener('mouseleave', () => {
-            project.style.transform = 'scale(1)';
-            project.style.boxShadow = 'none';
-        });
+  
+    // Sekwencyjne pojawianie się sekcji
+    gsap.from(".section", {
+      duration: 1,
+      y: 50,
+      opacity: 0,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: ".main-content",
+        start: "top 80%"
+      }
     });
-});
+  
+    // Animacja pasków umiejętności
+    gsap.from(".progress-bar", {
+      width: 0,
+      duration: 2,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: ".skills-box"
+      }
+    });
+  }
+  
+  // Inicjalizacja GSAP
+  document.addEventListener('DOMContentLoaded', function() {
+    // Dodaj GSAP z CDN jeśli nie ma
+    if (typeof gsap === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js';
+      script.onload = animateElements;
+      document.head.appendChild(script);
+      
+      const scrollScript = document.createElement('script');
+      scrollScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js';
+      document.head.appendChild(scrollScript);
+    } else {
+      animateElements();
+    }
+  });
