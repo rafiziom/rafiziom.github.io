@@ -1,189 +1,164 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>Rafał Ziomek - Inżynier Systemów IT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Tymczasowe style - pełny plik CSS wyślę osobno */
-        body {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-        .cv-container {
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .sidebar {
-            width: 30%;
-            background: #2c3e50;
-            color: white;
-            padding: 2rem;
-        }
-        .main-content {
-            width: 70%;
-            padding: 2rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafał Czerniak - Inżynier Systemów IT</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/timeline.css">
 </head>
 <body>
-    <div class="cv-container">
-        <!-- LEWA KOLUMNA (DOKŁADNIE JAK W CANVA) -->
-        <div class="sidebar">
-            <img src="assets/images/profile.jpg" alt="Rafał Ziomek" style="width:200px; border-radius:50%; border:4px solid #3498db; margin:0 auto 1.5rem; display:block;">
-            
-            <div class="contact">
-                <h2 style="color:#3498db; border-bottom:2px solid #3498db; padding-bottom:0.5rem;">KONTAKT</h2>
-                <p><i class="fas fa-envelope"></i> rafal.ziomek@example.com</p>
-                <p><i class="fas fa-phone"></i> +48 123 456 789</p>
-                <p><i class="fas fa-map-marker-alt"></i> Warszawa, Polska</p>
-                <p><i class="fab fa-linkedin"></i> linkedin.com/in/rafalziomek</p>
-                <p><i class="fab fa-github"></i> github.com/rafiziom</p>
-            </div>
-
-            <div class="skills">
-                <h2 style="color:#3498db; border-bottom:2px solid #3498db; padding-bottom:0.5rem; margin-top:2rem;">UMIEJĘTNOŚCI</h2>
-                <ul>
-                    <li>Python (zaawansowany)</li>
-                    <li>Systemy IT (Linux, Windows Server)</li>
-                    <li>Chmura (AWS, Azure)</li>
-                    <li>Docker i Kubernetes</li>
-                    <li>Bazy danych (SQL, MongoDB)</li>
-                    <li>DevOps (CI/CD, Terraform)</li>
-                </ul>
-            </div>
-
-            <div class="languages">
-                <h2 style="color:#3498db; border-bottom:2px solid #3498db; padding-bottom:0.5rem; margin-top:2rem;">JĘZYKI</h2>
-                <ul>
-                    <li>Angielski (C1 - zaawansowany)</li>
-                    <li>Polski (ojczysty)</li>
-                </ul>
-            </div>
-
-            <div class="certificates">
-                <h2 style="color:#3498db; border-bottom:2px solid #3498db; padding-bottom:0.5rem; margin-top:2rem;">CERTYFIKATY</h2>
-                <ul>
-                    <li>AWS Certified Solutions Architect</li>
-                    <li>Microsoft Certified: Azure Administrator</li>
-                    <li>Docker Certified Associate</li>
-                </ul>
-            </div>
-
-            <div class="interests">
-                <h2 style="color:#3498db; border-bottom:2px solid #3498db; padding-bottom:0.5rem; margin-top:2rem;">ZAINTERESOWANIA</h2>
-                <ul>
-                    <li>Nowe technologie IT</li>
-                    <li>Robotyka</li>
-                    <li>Literatura science-fiction</li>
-                </ul>
-            </div>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1>RAFAŁ CZERNIAK</h1>
+        <h2>INŻYNIER SYSTEMÓW IT</h2>
+        <div class="contact-info">
+          <a href="mailto:czerniakrafal94@gmail.com"><i class="fas fa-envelope"></i> czerniakrafal94@gmail.com</a>
+          <a href="tel:+48732683495"><i class="fas fa-phone"></i> +48 732 683 495</a>
+          <a href="https://github.com/rafiziom" target="_blank"><i class="fab fa-github"></i> github.com/rafiziom</a>
         </div>
-
-        <!-- PRAWA KOLUMNA (DOKŁADNIE JAK W CANVA) -->
-        <div class="main-content">
-            <header style="text-align:center; margin-bottom:2rem;">
-                <h1 style="color:#2c3e50; font-size:2.5rem; margin-bottom:0.5rem;">Rafał Ziomek</h1>
-                <p style="color:#3498db; font-size:1.2rem; font-weight:600;">Inżynier Systemów IT</p>
-            </header>
-
-            <section class="experience">
-                <h2 style="color:#3498db; border-bottom:2px solid #3498db; padding-bottom:0.5rem;"><i class="fas fa-briefcase"></i> DOŚWIADCZENIE ZAWODOWE</h2>
-                
-                <div class="job" style="margin-bottom:2rem;">
-                    <h3 style="margin-bottom:0.2rem;">Starszy Inżynier Systemów</h3>
-                    <p style="color:#3498db; font-style:italic; margin-top:0;">TechCorp Sp. z o.o. | 2021 - Obecnie</p>
-                    <ul>
-                        <li>Projektowanie i wdrażanie infrastruktury chmurowej AWS</li>
-                        <li>Automatyzacja procesów w Python i Bash</li>
-                        <li>Wdrażanie rozwiązań Kubernetes</li>
-                    </ul>
-                </div>
-
-                <div class="job" style="margin-bottom:2rem;">
-                    <h3 style="margin-bottom:0.2rem;">Inżynier IT</h3>
-                    <p style="color:#3498db; font-style:italic; margin-top:0;">DataSystems S.A. | 2018 - 2021</p>
-                    <ul>
-                        <li>Administracja systemami Linux</li>
-                        <li>Konfiguracja środowisk wirtualnych</li>
-                        <li>Wsparcie techniczne</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="education" style="margin-top:3rem;">
-                <h2 style="color:#3498db; border-bottom:2px solid #3498db; padding-bottom:0.5rem;"><i class="fas fa-graduation-cap"></i> WYKSZTAŁCENIE</h2>
-                
-                <div class="school" style="margin-bottom:1.5rem;">
-                    <h3 style="margin-bottom:0.2rem;">Politechnika Warszawska</h3>
-                    <p style="color:#3498db; font-style:italic; margin-top:0;">Informatyka, specjalizacja: Systemy Rozproszone | 2014 - 2018</p>
-                    <p>Tytuł pracy dyplomowej: "System monitorowania infrastruktury chmurowej"</p>
-                </div>
-            </section>
-
-            <section class="projects" style="margin-top:3rem;">
-                <h2 style="color:#3498db; border-bottom:2px solid #3498db; padding-bottom:0.5rem;"><i class="fas fa-project-diagram"></i> PROJEKTY</h2>
-                
-                <div class="project" style="margin-bottom:1.5rem;">
-                    <h3 style="margin-bottom:0.2rem;">System monitorowania zasobów IT</h3>
-                    <p style="color:#3498db; font-style:italic;">Python, Django, Prometheus</p>
-                    <p>Kompleksowe rozwiązanie do monitorowania infrastruktury</p>
-                    <a href="https://github.com/rafiziom/monitoring-system" style="color:#3498db; text-decoration:none;">
-                        <i class="fab fa-github"></i> Zobacz na GitHub
-                    </a>
-                </div>
-            </section>
-
-            <section class="references" style="margin-top:3rem;">
-                <h2 style="color:#3498db; border-bottom:2px solid #3498db; padding-bottom:0.5rem;"><i class="fas fa-comment-alt"></i> REFERENCJE</h2>
-                <p>Dostępne na życzenie</p>
-            </section>
-        </div>
+      </div>
     </div>
+  </header>
 
-    <!-- Animacje -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animacja nagłówka
-            gsap.from("header", { 
-                duration: 1, 
-                y: -50, 
-                opacity: 0,
-                ease: "power3.out"
-            });
+  <main class="container">
+    <!-- Sekcja Podsumowanie -->
+    <section id="summary" class="card">
+      <h3><i class="fas fa-user-tie"></i> PODSUMOWANIE ZAWODOWE</h3>
+      <p>Aktualnie specjalizuję się w zarządzaniu infrastrukturą informatyczną oraz wsparciu na różnych poziomach organizacji. Specjalizuję się też w projektowaniu, wdrażaniu oraz utrzymaniu rozwiązań serwerowych, sieciowych i chmurowych. Posiadam bogate doświadczenie w administracji systemami Windows/Linux, automatyzacji i naprawy procesów.</p>
+      <p>W swojej karierze jestem zorientowany na rozwiązywanie problemów oraz ciągłe doskonalenie procesów. Cechuje mnie samodzielność, umiejętność szybkiego uczenia się, pomoc innym, chęć rozwoju oraz wysokie kompetencje komunikacyjne.</p>
+    </section>
 
-            // Animacja sekcji
-            gsap.from(".section", {
-                duration: 1,
-                y: 50,
-                opacity: 0,
-                stagger: 0.2
-            });
+    <!-- Sekcja Doświadczenie -->
+    <section id="experience">
+      <h3><i class="fas fa-briefcase"></i> DOŚWIADCZENIE ZAWODOWE</h3>
+      
+      <div class="timeline">
+        <!-- Obecna praca -->
+        <div class="timeline-item">
+          <div class="timeline-date">marzec 2023 - obecnie</div>
+          <div class="timeline-content card">
+            <h4>Inżynier Systemów IT</h4>
+            <h5>Media Saturn Holding Polska</h5>
+            <ul>
+              <li>Utrzymanie systemów i aplikacji</li>
+              <li>Zarządzanie monitoringiem</li>
+              <li>Zarządzanie infrastrukturą IT</li>
+              <li>Rewizja, modyfikacja i implementacja kodu</li>
+              <li>Wsparcie w projektach, prowadzenie mniejszych wdrożeń</li>
+              <li>Analizowanie logów i metryk, współpraca z developerami</li>
+              <li>Administracja środowiskiem wirtualizacyjnym</li>
+              <li>Planowanie skalowania infrastruktury</li>
+              <li>Prowadzenie dokumentacji technicznych</li>
+              <li>Incydent oraz problem management</li>
+            </ul>
+          </div>
+        </div>
 
-            // Efekty hover
-            document.querySelectorAll('.job, .project').forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    gsap.to(item, { 
-                        duration: 0.3,
-                        backgroundColor: 'rgba(52, 152, 219, 0.05)',
-                        scale: 1.02,
-                        ease: "power1.out"
-                    });
-                });
-                item.addEventListener('mouseleave', () => {
-                    gsap.to(item, { 
-                        duration: 0.3,
-                        backgroundColor: 'transparent',
-                        scale: 1,
-                        ease: "power1.out"
-                    });
-                });
-            });
-        });
-    </script>
+        <!-- Poprzednie stanowiska -->
+        <div class="timeline-item">
+          <div class="timeline-date">marzec 2021 - marzec 2022</div>
+          <div class="timeline-content card">
+            <h4>Kierownik Service Desk</h4>
+            <h5>Euvic IT Projekt MSHP</h5>
+            <ul>
+              <li>Kierowanie, koordynacja, dbanie o utrzymanie i rozwój projektu</li>
+              <li>Obsługa procesu zarządzania incydentami</li>
+              <li>Dbanie o utrzymanie zobowiązań wobec mierników i klienta, prowadzenie i analiza raportów</li>
+              <li>Utrzymanie i rozwój kompetencji w zespole</li>
+              <li>Prowadzenie szkoleń i dokumentacji technicznej</li>
+              <li>Dbanie o dobrą atmosferę i pozytywną motywację wśród członków zespołu</li>
+              <li>Incydent oraz problem management</li>
+              <li>Pomoc we wdrożeniach</li>
+              <li>Realizacja zadań dodatkowych</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Dodaj pozostałe stanowiska w analogiczny sposób -->
+      </div>
+    </section>
+
+    <!-- Sekcja Umiejętności -->
+    <section id="skills" class="card">
+      <h3><i class="fas fa-code"></i> UMIEJĘTNOŚCI TECHNICZNE</h3>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h4><i class="fas fa-server"></i> Systemy Operacyjne</h4>
+          <ul>
+            <li>Windows Server</li>
+            <li>Linux (Debian, Ubuntu)</li>
+            <li>Systemy Microsoft (11,10,8,7, Mobile)</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <h4><i class="fas fa-cloud"></i> Chmura i Wirtualizacja</h4>
+          <ul>
+            <li>Azure AD, Intune, SCCM</li>
+            <li>Rozwiązania chmurowe Beyond, GCP</li>
+            <li>Wirtualizacja (VMware, Hyper-V)</li>
+          </ul>
+        </div>
+
+        <!-- Pozostałe kategorie umiejętności -->
+      </div>
+    </section>
+
+    <!-- Sekcja Wykształcenie -->
+    <section id="education" class="card">
+      <h3><i class="fas fa-graduation-cap"></i> WYKSZTAŁCENIE</h3>
+      <div class="education-item">
+        <h4>Szkoła policealna Centrum Nauki i Biznesu Żak</h4>
+        <p class="education-date">styczeń 2017 - marzec 2017</p>
+        <p>Bezpieczeństwo i Higiena Pracy - Tytuł Technika BHP</p>
+      </div>
+      <div class="education-item">
+        <h4>Technikum nr. 2 im. Marii Skłodowskiej Curie w Płocku</h4>
+        <p class="education-date">styczeń 2009 - grudzień 2013</p>
+        <p>Technik Elektryk - Dyplom potwierdzający kwalifikacje</p>
+      </div>
+    </section>
+
+    <!-- Sekcja Referencje -->
+    <section id="references" class="card">
+      <h3><i class="fas fa-quote-left"></i> REFERENCJE</h3>
+      <div class="references-grid">
+        <div class="reference-item">
+          <h4>Michał Wojciechowski</h4>
+          <p>Dyrektor oddziału w Płocku, Euvic IT</p>
+          <a href="mailto:Michal.Wojciechowski@euvic.pl">Michal.Wojciechowski@euvic.pl</a>
+        </div>
+        <!-- Pozostałe referencje -->
+      </div>
+    </section>
+
+    <!-- Sekcja Zainteresowania -->
+    <section id="interests" class="card">
+      <h3><i class="fas fa-heart"></i> ZAINTERESOWANIA</h3>
+      <div class="interests-grid">
+        <div class="interest-item">
+          <i class="fas fa-tools"></i>
+          <p>Majsterkowanie i naprawy sprzętu</p>
+        </div>
+        <div class="interest-item">
+          <i class="fas fa-print"></i>
+          <p>Druk 3D</p>
+        </div>
+        <!-- Pozostałe zainteresowania -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2023 Rafał Czerniak | Wersja interaktywna CV</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/skills-chart.js"></script>
 </body>
 </html>
