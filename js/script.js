@@ -47,3 +47,42 @@ function animateElements() {
       animateElements();
     }
   });
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Animacje timeline
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  timelineItems.forEach(item => {
+    observer.observe(item);
+  });
+
+  // Filtrowanie umiejętności
+  const skillFilters = document.querySelectorAll('.skill-filter');
+  
+  skillFilters.forEach(filter => {
+    filter.addEventListener('click', function() {
+      const category = this.dataset.category;
+      filterSkills(category);
+    });
+  });
+});
+
+function filterSkills(category) {
+  const categories = document.querySelectorAll('.skill-category');
+  
+  categories.forEach(cat => {
+    if (category === 'all' || cat.dataset.category === category) {
+      cat.style.display = 'block';
+    } else {
+      cat.style.display = 'none';
+    }
+  });
+}
