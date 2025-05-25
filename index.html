@@ -5,182 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafał Czerniak - Inżynier Systemów IT</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --primary: #2563eb; /* Intensywniejszy niebieski */
-      --secondary: #3b82f6;
-      --light: #f8fafc;
-      --dark: #1e293b;
-      --gray: #64748b;
-      --light-gray: #e2e8f0;
-      --white: #ffffff;
-      --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      line-height: 1.6;
-      color: var(--dark);
-      background-color: var(--light);
-      font-size: 16px;
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      min-height: 100vh;
-    }
-
-    /* ========== SIDEBAR ========== */
-    .sidebar {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--white);
-      padding: 2.5rem;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .profile {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid rgba(255,255,255,0.2);
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-info {
-      margin-top: auto;
-      margin-bottom: 2rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .contact-item i {
-      margin-right: 0.75rem;
-      width: 20px;
-      text-align: center;
-    }
-
-    /* ========== MAIN CONTENT ========== */
-    .main-content {
-      padding: 3rem 4rem;
-      max-width: 900px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    section {
-      margin-bottom: 3rem;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-
-    h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--light-gray);
-      color: var(--primary);
-    }
-
-    h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--dark);
-    }
-
-    .card {
-      background: var(--white);
-      border-radius: 0.5rem;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--card-shadow);
-    }
-
-    /* ========== EXPERIENCE SECTION ========== */
-    .experience-item {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .experience-date {
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .experience-content h3 {
-      margin-bottom: 0.5rem;
-    }
-
-    .experience-company {
-      color: var(--gray);
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-
-    /* ========== SKILLS SECTION ========== */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .skill-category {
-      margin-bottom: 1.5rem;
-    }
-
-    .skill-category h4 {
-      margin-bottom: 0.75rem;
-      color: var(--primary);
-    }
-
-    /* ========== PRINT STYLES ========== */
-    @media print {
-      body {
-        grid-template-columns: 1fr;
-        font-size: 12pt;
-      }
-      
-      .sidebar {
-        display: none;
-      }
-      
-      .main-content {
-        padding: 1cm;
-        max-width: 100%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <!-- ========== SIDEBAR ========== -->
   <aside class="sidebar">
     <div class="profile">
-      <img src="profile.jpg" alt="Rafał Czerniak" class="profile-img">
-      <h1>Rafał Czerniak</h1>
-      <h3>Inżynier Systemów IT</h3>
+      <img src="assets/images/profile.jpg" alt="Rafał Czerniak" class="profile-img">
+      <h1>RAFAŁ CZERNIAK</h1>
+      <h3>INŻYNIER SYSTEMÓW IT</h3>
     </div>
 
     <div class="contact-info">
@@ -206,16 +39,16 @@
   <!-- ========== MAIN CONTENT ========== -->
   <main class="main-content">
     <!-- Professional Summary -->
-    <section>
-      <h2>Podsumowanie Zawodowe</h2>
+    <section id="summary">
+      <h2><i class="fas fa-user-tie"></i> PODSUMOWANIE ZAWODOWE</h2>
       <div class="card">
         <p>Doświadczony Inżynier Systemów IT specjalizujący się w zarządzaniu infrastrukturą informatyczną, administracji systemami Windows/Linux oraz wdrażaniu rozwiązań chmurowych. Posiadam bogate doświadczenie w automatyzacji procesów i rozwiązywaniu złożonych problemów technicznych.</p>
       </div>
     </section>
 
     <!-- Experience -->
-    <section>
-      <h2>Doświadczenie Zawodowe</h2>
+    <section id="experience">
+      <h2><i class="fas fa-briefcase"></i> DOŚWIADCZENIE ZAWODOWE</h2>
       
       <div class="experience-item">
         <div class="experience-date">marzec 2023 - obecnie</div>
@@ -226,20 +59,21 @@
             <li>Zarządzanie infrastrukturą IT i środowiskiem wirtualizacyjnym</li>
             <li>Implementacja i optymalizacja systemów monitoringu</li>
             <li>Administracja systemami Windows Server i Linux</li>
+            <li>Planowanie skalowania infrastruktury</li>
           </ul>
         </div>
       </div>
 
-      <!-- Dodaj pozostałe stanowiska w analogiczny sposób -->
+      <!-- Dodaj pozostałe stanowiska -->
     </section>
 
     <!-- Skills -->
-    <section>
-      <h2>Umiejętności Techniczne</h2>
+    <section id="skills">
+      <h2><i class="fas fa-code"></i> UMIEJĘTNOŚCI TECHNICZNE</h2>
       <div class="card">
         <div class="skills-grid">
           <div class="skill-category">
-            <h4>Systemy Operacyjne</h4>
+            <h4><i class="fas fa-server"></i> Systemy Operacyjne</h4>
             <ul>
               <li>Windows Server</li>
               <li>Linux (Debian, Ubuntu)</li>
@@ -248,7 +82,7 @@
           </div>
           
           <div class="skill-category">
-            <h4>Chmura i Wirtualizacja</h4>
+            <h4><i class="fas fa-cloud"></i> Chmura i Wirtualizacja</h4>
             <ul>
               <li>Microsoft Azure</li>
               <li>Google Cloud Platform</li>
@@ -256,14 +90,14 @@
             </ul>
           </div>
           
-          <!-- Dodaj kolejne kategorie umiejętności -->
+          <!-- Dodaj kolejne kategorie -->
         </div>
       </div>
     </section>
 
     <!-- Education -->
-    <section>
-      <h2>Wykształcenie</h2>
+    <section id="education">
+      <h2><i class="fas fa-graduation-cap"></i> WYKSZTAŁCENIE</h2>
       <div class="experience-item">
         <div class="experience-date">2017</div>
         <div class="experience-content card">
@@ -271,96 +105,9 @@
           <span class="experience-company">Centrum Nauki i Biznesu Żak</span>
         </div>
       </div>
-      <!-- Dodaj kolejne pozycje edukacyjne -->
     </section>
   </main>
 
-  <script>
-    // ========== PARTICLE BACKGROUND ==========
-    document.addEventListener('DOMContentLoaded', function() {
-      const canvas = document.createElement('canvas');
-      canvas.id = 'particle-canvas';
-      canvas.style.position = 'fixed';
-      canvas.style.top = '0';
-      canvas.style.left = '0';
-      canvas.style.width = '100%';
-      canvas.style.height = '100%';
-      canvas.style.zIndex = '-1';
-      canvas.style.opacity = '0.1';
-      document.body.appendChild(canvas);
-
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      const particles = [];
-      const particleCount = 80;
-
-      class Particle {
-        constructor() {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-          this.size = Math.random() * 2 + 1;
-          this.speedX = Math.random() * 1 - 0.5;
-          this.speedY = Math.random() * 1 - 0.5;
-          this.color = `hsla(215, 80%, 60%, ${Math.random() * 0.3 + 0.1})`;
-        }
-
-        update() {
-          this.x += this.speedX;
-          this.y += this.speedY;
-
-          if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-          if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-        }
-
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = this.color;
-          ctx.fill();
-        }
-      }
-
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-      }
-
-      function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        for (let i = 0; i < particles.length; i++) {
-          for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < 150) {
-              ctx.beginPath();
-              ctx.strokeStyle = `hsla(215, 80%, 60%, ${0.3 - distance/500})`;
-              ctx.lineWidth = 0.5;
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.stroke();
-            }
-          }
-        }
-
-        particles.forEach(particle => {
-          particle.update();
-          particle.draw();
-        });
-
-        requestAnimationFrame(animateParticles);
-      }
-
-      animateParticles();
-
-      window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      });
-    });
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
