@@ -1,434 +1,469 @@
+// ========== UNIVERSE-INSPIRED ANIMATIONS ==========
 document.addEventListener('DOMContentLoaded', function() {
-  // ========== GLOBAL FUNCTIONS ==========
-  const debounce = (func, wait = 100) => {
-    let timeout;
-    return function(...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        func.apply(this, args);
-      }, wait);
-    };
+  // 1. Particle Background Animation (jak w Universe)
+  const createParticleBackground = () => {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'particle-canvas';
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.zIndex = '-1';
+    canvas.style.opacity = '0.3';
+    document.body.prepend(canvas);
+
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const particleCount = window.innerWidth < 768 ? 30 : 100;
+
+    // Particle class
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 2 - 1;
+        this.speedY = Math.random() * 2 - 1;
+        this.color = `hsl(${Math.random() * 60 + 200}, 70%, 60%)`;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    // Create particles
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    // Animation loop
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw connections between particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(100, 149, 237, ${1 - distance / 150})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Update and draw particles
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
   };
 
-  // ========== HEADER ANIMATION ==========
-  const header = document.querySelector('.header');
-  if (header) {
-    let lastScroll = 0;
+  // 2. Floating Elements Animation (jak w Universe)
+  const addFloatingEffects = () => {
+    const floatingElements = document.querySelectorAll('.card, .skill-category, .interest-item');
     
-    window.addEventListener('scroll', debounce(() => {
-      const currentScroll = window.pageYOffset;
-      if (currentScroll <= 0) {
-        header.style.boxShadow = 'none';
-        return;
+    floatingElements.forEach(el => {
+      const floatIntensity = Math.random() * 10 + 5;
+      const rotationIntensity = Math.random() * 2 + 1;
+      const delay = Math.random() * 2000;
+      
+      setTimeout(() => {
+        el.style.transition = `transform ${floatIntensity}s ease-in-out infinite alternate`;
+        
+        setInterval(() => {
+          const floatY = Math.sin(Date.now() / (floatIntensity * 500)) * 10;
+          const floatX = Math.cos(Date.now() / (floatIntensity * 700)) * 5;
+          const rotate = Math.sin(Date.now() / (rotationIntensity * 1000)) * 2;
+          
+          el.style.transform = `translate(${floatX}px, ${floatY}px) rotate(${rotate}deg)`;
+        }, 50);
+      }, delay);
+    });
+  };
+
+  // 3. Gradient Wave Animation (nagłówek)
+  const animateHeaderGradient = () => {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    
+    let hue = 200;
+    let direction = 1;
+    
+    setInterval(() => {
+      hue += direction * 0.5;
+      
+      if (hue > 220) direction = -1;
+      if (hue < 180) direction = 1;
+      
+      header.style.background = `
+        linear-gradient(
+          135deg,
+          hsl(${hue}, 80%, 45%),
+          hsl(${hue + 20}, 80%, 55%)
+        )
+      `;
+    }, 50);
+  };
+
+  // 4. Interactive Cursor Effect (jak w Universe)
+  const addInteractiveCursor = () => {
+    const cursor = document.createElement('div');
+    cursor.className = 'universe-cursor';
+    document.body.appendChild(cursor);
+    
+    const follower = document.createElement('div');
+    follower.className = 'universe-cursor-follower';
+    document.body.appendChild(follower);
+    
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+      
+      setTimeout(() => {
+        follower.style.left = `${e.clientX}px`;
+        follower.style.top = `${e.clientY}px`;
+      }, 100);
+    });
+    
+    // Cursor hover effects
+    const interactiveElements = document.querySelectorAll('a, button, .interest-item');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'scale(2)';
+        follower.style.transform = 'scale(0.5)';
+      });
+      
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'scale(1)';
+        follower.style.transform = 'scale(1)';
+      });
+    });
+  };
+
+  // 5. Text Scramble Animation (nagłówki sekcji)
+  const addTextScramble = () => {
+    class TextScramble {
+      constructor(el) {
+        this.el = el;
+        this.chars = '!<>-_\\/[]{}—=+*^?#________';
+        this.update = this.update.bind(this);
       }
       
-      if (currentScroll > lastScroll) {
-        // Scrolling down
-        header.style.transform = 'translateY(-100%)';
-      } else {
-        // Scrolling up
-        header.style.transform = 'translateY(0)';
-        header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-      }
-      lastScroll = currentScroll;
-    }, 16));
-  }
-
-  // ========== TIMELINE ANIMATION ==========
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  const timeline = document.querySelector('.timeline');
-  
-  if (timelineItems.length > 0) {
-    const animateTimeline = () => {
-      timelineItems.forEach((item, index) => {
-        const itemTop = item.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
+      setText(newText) {
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise((resolve) => this.resolve = resolve);
+        this.queue = [];
         
-        if (itemTop < windowHeight * 0.75) {
-          item.classList.add('animate');
-          item.style.animationDelay = `${index * 0.1}s`;
+        for (let i = 0; i < length; i++) {
+          const from = oldText[i] || '';
+          const to = newText[i] || '';
+          const start = Math.floor(Math.random() * 40);
+          const end = start + Math.floor(Math.random() * 40);
+          this.queue.push({ from, to, start, end });
         }
-      });
-    };
-
-    // Initial check
-    animateTimeline();
+        
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+      }
+      
+      update() {
+        let output = '';
+        let complete = 0;
+        
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+          let { from, to, start, end, char } = this.queue[i];
+          
+          if (this.frame >= end) {
+            complete++;
+            output += to;
+          } else if (this.frame >= start) {
+            if (!char || Math.random() < 0.28) {
+              char = this.randomChar();
+              this.queue[i].char = char;
+            }
+            output += `<span class="scramble-char">${char}</span>`;
+          } else {
+            output += from;
+          }
+        }
+        
+        this.el.innerHTML = output;
+        
+        if (complete === this.queue.length) {
+          this.resolve();
+        } else {
+          this.frameRequest = requestAnimationFrame(this.update);
+          this.frame++;
+        }
+      }
+      
+      randomChar() {
+        return this.chars[Math.floor(Math.random() * this.chars.length)];
+      }
+    }
     
-    // Check on scroll
-    window.addEventListener('scroll', debounce(animateTimeline, 16));
-  }
+    const headings = document.querySelectorAll('h1, h2, h3');
+    headings.forEach(heading => {
+      const originalText = heading.innerText;
+      const scramble = new TextScramble(heading);
+      
+      // Scramble on hover
+      heading.addEventListener('mouseenter', () => {
+        scramble.setText(originalText).then(() => {
+          setTimeout(() => scramble.setText(originalText), 2000);
+        });
+      });
+    });
+  };
 
-  // ========== SKILLS FILTER ==========
-  const skillFilters = document.querySelectorAll('.skill-filter');
-  const skillCategories = document.querySelectorAll('.skill-category');
-  
-  if (skillFilters.length > 0 && skillCategories.length > 0) {
-    skillFilters.forEach(filter => {
-      filter.addEventListener('click', function(e) {
+  // 6. Dynamic Background Shapes (jak w Universe)
+  const addBackgroundShapes = () => {
+    const shapes = ['circle', 'triangle', 'square', 'pentagon'];
+    const colors = ['#4facfe', '#00f2fe', '#43e97b', '#38f9d7'];
+    const container = document.createElement('div');
+    container.className = 'background-shapes';
+    document.body.prepend(container);
+    
+    for (let i = 0; i < 15; i++) {
+      const shape = document.createElement('div');
+      shape.className = `shape ${shapes[Math.floor(Math.random() * shapes.length)]}`;
+      shape.style.position = 'absolute';
+      shape.style.opacity = '0.1';
+      shape.style.width = `${Math.random() * 200 + 50}px`;
+      shape.style.height = shape.style.width;
+      shape.style.left = `${Math.random() * 100}%`;
+      shape.style.top = `${Math.random() * 100}%`;
+      shape.style.background = colors[Math.floor(Math.random() * colors.length)];
+      shape.style.filter = 'blur(10px)';
+      shape.style.zIndex = '-1';
+      
+      // Animation
+      shape.style.animation = `float-shape ${Math.random() * 30 + 20}s linear infinite`;
+      shape.style.animationDelay = `${Math.random() * 10}s`;
+      
+      container.appendChild(shape);
+    }
+  };
+
+  // 7. Glitch Effect on Header (jak w Universe)
+  const addGlitchEffect = () => {
+    const header = document.querySelector('.header h1');
+    if (!header) return;
+    
+    header.style.position = 'relative';
+    
+    const glitch = document.createElement('div');
+    glitch.className = 'glitch';
+    glitch.innerHTML = `
+      <span class="glitch-text" style="color: #4facfe">${header.innerText}</span>
+      <span class="glitch-text" style="color: #00f2fe">${header.innerText}</span>
+      <span class="glitch-text" style="color: #43e97b">${header.innerText}</span>
+    `;
+    
+    header.innerHTML = '';
+    header.appendChild(glitch);
+    
+    setInterval(() => {
+      const texts = glitch.querySelectorAll('.glitch-text');
+      texts.forEach(text => {
+        text.style.transform = `translate(${Math.random() * 5 - 2.5}px, ${Math.random() * 5 - 2.5}px)`;
+        text.style.opacity = Math.random() > 0.7 ? '0' : '1';
+      });
+    }, 100);
+  };
+
+  // 8. Smooth Scroll Anchors
+  const addSmoothScroll = () => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
         
-        // Update active filter
-        skillFilters.forEach(f => f.classList.remove('active'));
-        this.classList.add('active');
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
         
-        const category = this.dataset.category;
-        
-        // Filter skills
-        skillCategories.forEach(cat => {
-          if (category === 'all' || cat.dataset.category === category) {
-            cat.style.display = 'block';
-            setTimeout(() => {
-              cat.style.opacity = 1;
-              cat.style.transform = 'translateY(0)';
-            }, 10);
-          } else {
-            cat.style.opacity = 0;
-            cat.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-              cat.style.display = 'none';
-            }, 300);
-          }
-        });
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
       });
     });
-  }
+  };
 
-  // ========== INTERACTIVE SKILL CHART ==========
-  const skillsChart = document.querySelector('.skills-chart');
-  if (skillsChart) {
-    const skillsData = [
-      { name: 'Windows Server', level: 90, category: 'systems' },
-      { name: 'Linux', level: 80, category: 'systems' },
-      { name: 'Azure', level: 75, category: 'cloud' },
-      { name: 'GCP', level: 65, category: 'cloud' },
-      { name: 'PowerShell', level: 85, category: 'automation' },
-      { name: 'Docker', level: 70, category: 'devops' },
-      { name: 'Kubernetes', level: 60, category: 'devops' },
-      { name: 'Terraform', level: 65, category: 'devops' },
-      { name: 'Nagios', level: 75, category: 'monitoring' },
-      { name: 'Grafana', level: 80, category: 'monitoring' }
-    ];
+  // Initialize animations
+  createParticleBackground();
+  addFloatingEffects();
+  animateHeaderGradient();
+  addInteractiveCursor();
+  addTextScramble();
+  addBackgroundShapes();
+  addGlitchEffect();
+  addSmoothScroll();
 
-    const renderSkillsChart = () => {
-      skillsChart.innerHTML = '';
-      
-      skillsData.forEach(skill => {
-        const skillElement = document.createElement('div');
-        skillElement.className = 'skill-bar';
-        skillElement.dataset.category = skill.category;
-        
-        skillElement.innerHTML = `
-          <div class="skill-info">
-            <span class="skill-name">${skill.name}</span>
-            <span class="skill-percent">${skill.level}%</span>
-          </div>
-          <div class="skill-progress">
-            <div class="skill-level" style="width: ${skill.level}%"></div>
-          </div>
-        `;
-        
-        skillsChart.appendChild(skillElement);
-      });
-    };
-
-    renderSkillsChart();
-  }
-
-  // ========== PRINT BUTTON ==========
-  const printButton = document.createElement('button');
-  printButton.className = 'print-button';
-  printButton.innerHTML = '<i class="fas fa-print"></i> Print CV';
-  printButton.addEventListener('click', () => window.print());
-  
-  document.body.appendChild(printButton);
-
-  // ========== SCROLL TO TOP BUTTON ==========
-  const scrollToTopButton = document.createElement('button');
-  scrollToTopButton.className = 'scroll-to-top';
-  scrollToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
-  scrollToTopButton.style.display = 'none';
-  
-  scrollToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-
-  document.body.appendChild(scrollToTopButton);
-
-  window.addEventListener('scroll', debounce(() => {
-    if (window.pageYOffset > 300) {
-      scrollToTopButton.style.display = 'block';
-    } else {
-      scrollToTopButton.style.display = 'none';
+  // Add dynamic styles for new animations
+  const animationStyles = document.createElement('style');
+  animationStyles.textContent = `
+    /* Particle Background */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      opacity: 0.3;
     }
-  }));
-
-  // ========== INTEREST HOVER EFFECTS ==========
-  const interestItems = document.querySelectorAll('.interest-item');
-  interestItems.forEach(item => {
-    item.addEventListener('mouseenter', function() {
-      const icon = this.querySelector('i');
-      icon.style.transform = 'rotate(15deg) scale(1.1)';
-    });
     
-    item.addEventListener('mouseleave', function() {
-      const icon = this.querySelector('i');
-      icon.style.transform = 'rotate(0) scale(1)';
-    });
-  });
-
-  // ========== REFERENCE MODALS ==========
-  const referenceItems = document.querySelectorAll('.reference-item');
-  referenceItems.forEach(item => {
-    item.addEventListener('click', function() {
-      const name = this.querySelector('h4').textContent;
-      const position = this.querySelector('p').textContent;
-      const email = this.querySelector('a').textContent;
-      
-      const modal = document.createElement('div');
-      modal.className = 'modal';
-      modal.innerHTML = `
-        <div class="modal-content">
-          <span class="close-modal">&times;</span>
-          <h3>${name}</h3>
-          <p>${position}</p>
-          <a href="mailto:${email}">${email}</a>
-          <div class="modal-actions">
-            <a href="mailto:${email}" class="modal-button">
-              <i class="fas fa-envelope"></i> Send Email
-            </a>
-            <button class="modal-button copy-email" data-email="${email}">
-              <i class="fas fa-copy"></i> Copy Email
-            </button>
-          </div>
-        </div>
-      `;
-      
-      document.body.appendChild(modal);
-      
-      // Close modal
-      modal.querySelector('.close-modal').addEventListener('click', () => {
-        modal.remove();
-      });
-      
-      // Copy email
-      modal.querySelector('.copy-email').addEventListener('click', function() {
-        navigator.clipboard.writeText(this.dataset.email).then(() => {
-          const originalText = this.innerHTML;
-          this.innerHTML = '<i class="fas fa-check"></i> Copied!';
-          setTimeout(() => {
-            this.innerHTML = originalText;
-          }, 2000);
-        });
-      });
-      
-      // Close when clicking outside
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.remove();
-        }
-      });
-    });
-  });
-
-  // ========== SECTION SCROLL SPY ==========
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-link');
-  
-  if (navLinks.length > 0) {
-    window.addEventListener('scroll', debounce(() => {
-      let current = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (pageYOffset >= sectionTop - 200) {
-          current = section.getAttribute('id');
-        }
-      });
-      
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
-    }, 16));
-  }
-
-  // ========== THEME TOGGLE ==========
-  const themeToggle = document.createElement('button');
-  themeToggle.className = 'theme-toggle';
-  themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-  themeToggle.title = 'Toggle Dark Mode';
-  
-  themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
-    
-    if (document.body.classList.contains('dark-theme')) {
-      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-      localStorage.setItem('theme', 'dark');
-    } else {
-      themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-      localStorage.setItem('theme', 'light');
+    /* Floating Elements */
+    @keyframes float-shape {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(50px, 50px) rotate(90deg);
+      }
+      50% {
+        transform: translate(100px, 0) rotate(180deg);
+      }
+      75% {
+        transform: translate(50px, -50px) rotate(270deg);
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
     }
-  });
-  
-  // Check for saved theme preference
-  if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-theme');
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-  }
-  
-  document.body.appendChild(themeToggle);
+    
+    /* Universe Cursor */
+    .universe-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: rgba(100, 149, 237, 0.5);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease;
+      mix-blend-mode: difference;
+    }
+    
+    .universe-cursor-follower {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 2px solid rgba(100, 149, 237, 0.3);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.6s ease, width 0.3s ease, height 0.3s ease;
+    }
+    
+    /* Glitch Effect */
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .glitch-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: all 0.1s ease;
+    }
+    
+    .glitch-text:nth-child(1) {
+      z-index: 3;
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    }
+    
+    .glitch-text:nth-child(2) {
+      z-index: 2;
+      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    }
+    
+    .glitch-text:nth-child(3) {
+      z-index: 1;
+    }
+    
+    /* Scramble Animation */
+    .scramble-char {
+      display: inline-block;
+      min-width: 5px;
+    }
+    
+    /* Background Shapes */
+    .background-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
+    }
+    
+    .shape {
+      position: absolute;
+      opacity: 0.1;
+      z-index: -1;
+      filter: blur(10px);
+    }
+    
+    .circle {
+      border-radius: 50%;
+    }
+    
+    .triangle {
+      width: 0;
+      height: 0;
+      background: transparent !important;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid;
+    }
+    
+    .pentagon {
+      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    }
+  `;
+  document.head.appendChild(animationStyles);
 });
-
-// ========== ADDITIONAL STYLES DYNAMICALLY ==========
-const dynamicStyles = document.createElement('style');
-dynamicStyles.textContent = `
-  /* Print Button */
-  .print-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    padding: 12px 20px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-  }
-  
-  .print-button:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  }
-  
-  /* Scroll to Top */
-  .scroll-to-top {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: var(--secondary);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-  }
-  
-  .scroll-to-top:hover {
-    background-color: var(--primary);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  }
-  
-  /* Modal Styles */
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    max-width: 500px;
-    width: 90%;
-    position: relative;
-  }
-  
-  .close-modal {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  .modal-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-  
-  .modal-button {
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  /* Theme Toggle */
-  .theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: var(--light-gray);
-    color: var(--dark);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-  }
-  
-  .theme-toggle:hover {
-    transform: rotate(30deg) scale(1.1);
-  }
-  
-  /* Dark Theme */
-  .dark-theme {
-    background-color: #121212;
-    color: #e0e0e0;
-  }
-  
-  .dark-theme .card {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-  }
-  
-  .dark-theme .skill-category,
-  .dark-theme .reference-item,
-  .dark-theme .interest-item {
-    background-color: #2d2d2d;
-  }
-  
-  .dark-theme .timeline-content li::before {
-    color: var(--secondary);
-  }
-`;
-
-document.head.appendChild(dynamicStyles);
